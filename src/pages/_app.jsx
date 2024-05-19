@@ -1,3 +1,6 @@
+import Footer from "@/components/footer";
+import Header from "@/components/header";
+import { PeopleProvider } from "@/contexts/people";
 import "@/styles/globals.css";
 import { createTheme, ThemeProvider } from "@mui/material";
 
@@ -10,8 +13,12 @@ export default function App({ Component, pageProps }) {
     }
   })
   return (
-    <ThemeProvider theme={theme}>
-      <Component {...pageProps} />
-    </ThemeProvider>
+    <PeopleProvider>
+      <ThemeProvider theme={theme}>
+        <Header />
+        <Component {...pageProps} />
+        <Footer />
+      </ThemeProvider>
+    </PeopleProvider>
   );
 }
