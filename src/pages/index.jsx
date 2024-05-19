@@ -28,21 +28,27 @@ export default function Home() {
   ];
   return (
     <>
-      <Grid container>
-        <Grid container spacing={1}>
-          {infoCards.map((card, index) => {
-            return (
-              <Grid item xs={12} md={3} key={index}>
-                <Paper elevation={3} style={{padding: '1rem', textAlign: 'center'}}>
-                  <Typography variant="h6">{card.title}</Typography>
-                  <Typography variant="h3">{card.value.toFixed(1)}</Typography>
-                </Paper>
-              </Grid>
-            )
-          })}
+      <Grid container spacing={1} my={0}>
+        <Grid item xs={12}>
+          <Grid container spacing={1}>
+            {infoCards.map((card, index) => {
+              return (
+                <Grid item xs={12} md={3} key={index}>
+                  <Paper elevation={3} style={{padding: '1rem', textAlign: 'center'}}>
+                    <Typography variant="h6">{card.title}</Typography>
+                    <Typography variant="h3">{card.value.toFixed(1)}</Typography>
+                  </Paper>
+                </Grid>
+              )
+            })}
+          </Grid>
         </Grid>
-        <ChartsSection/>
-        <TablesSection/>
+        <Grid item xs={12}>
+          <ChartsSection/>
+        </Grid>
+        <Grid item xs={12}>
+          <TablesSection/>
+        </Grid>
       </Grid>
     </>
   );

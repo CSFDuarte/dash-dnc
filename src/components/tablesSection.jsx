@@ -6,7 +6,14 @@ const TableCard = ({title, data, rows, columns}) => (
   <Grid item xs={12} md={4}>
     <Paper elevation={3} style={{padding: '1rem', textAlign: 'center', minHeight: '360px'}}>
       <Typography variant="h6">{title}</Typography>
-      <DataGrid rows={rows} columns={columns} pagination={5} />
+      <DataGrid
+        rows={rows}
+        columns={columns}
+        initialState={{ pagination: {
+          paginationModel: { page: 0, pageSize: 5 },
+        }}}
+        pageSizeOptions={[5, 10]}
+      />
     </Paper>
   </Grid>
 );
