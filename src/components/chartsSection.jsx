@@ -8,7 +8,7 @@ const ChartCard = ({title, data, dataKey}) => (
     <Typography variant="h6">{title}</Typography>
     <ResponsiveContainer width="100%" height={300}>
       <BarChart data={data}>
-        <XAxis dataKey="Nome" />
+        <XAxis dataKey="Nome" angle={-50} height={80} textAnchor="end" />
         <YAxis />
         <Bar dataKey={dataKey} fill="#0a3c7d"/>
       </BarChart>

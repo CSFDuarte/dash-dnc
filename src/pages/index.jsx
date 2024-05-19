@@ -35,7 +35,7 @@ export default function Home() {
               <Grid item xs={12} md={3} key={index}>
                 <Paper elevation={3} style={{padding: '1rem', textAlign: 'center'}}>
                   <Typography variant="h6">{card.title}</Typography>
-                  <Typography variant="h3">{card.value}</Typography>
+                  <Typography variant="h3">{card.value.toFixed(1)}</Typography>
                 </Paper>
               </Grid>
             )

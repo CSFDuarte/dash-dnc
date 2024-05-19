@@ -1,3 +1,4 @@
+import useDialog from "@/contexts/dialogContext";
 import usePeople from "@/contexts/people";
 import { Button, Grid, MenuItem, Paper, TextField, Typography } from "@mui/material";
 import { useState } from "react";
@@ -21,10 +22,18 @@ export const possibleCities = [
 export default function CreateForm() {
   const { handleSubmit, control, reset} = useForm();
   const { people, setPeople } = usePeople();
+  const { openDialog } = useDialog();
   
   const handleAddDeveloper = (data) => {
-    console.log(data);
-    setPeople([...people, data]);
+    openDialog({
+      title: 'Deseja continuar?',
+      content: 'Deseja realmente adicionar o desenvolvedor ' + data.name + '?',
+      onConfirm: () => handleConfirm(data)
+    })
+  }
+
+  const handleConfirm = (data) => {
+    setPeople([...people, {id: people.legth + 1, ...data}]);
     reset();
   }
 
@@ -101,7 +110,7 @@ export default function CreateForm() {
                   message: 'A cidade deve conter a UF'
                 }
               }}
-              render={({field}) => (
+              render={({field, fieldState}) => (
                 <TextField
                   {...field}
                   label="Cidade"
@@ -109,6 +118,8 @@ export default function CreateForm() {
                   name="city"
                   required
                   fullWidth
+                  error={fieldState.invalid}
+                  helperText={fieldState.error?.message}
                 />
               )}
             />
